@@ -1,13 +1,27 @@
 package main;
 
-/**
- * @author David Wandratsch, 4BHIT
- * @version 1.0, class TheMain
- */
-public class TheMain
+import controllerview.BikeC;
+import javafx.application.Application;
+import javafx.stage.Stage;
+import serial.Catalog;
+
+public class TheMain extends Application
 {
-	public static void main(String[] args)
+	@Override
+	public void init()
 	{
-		System.out.println("Hello World!");
+		Catalog.getInstance().restore();
+	}
+
+	@Override
+	public void start(Stage primaryStage)
+	{
+		BikeC.show(primaryStage);
+	}
+
+	@Override
+	public void stop()
+	{
+		Catalog.getInstance().persist();
 	}
 }
