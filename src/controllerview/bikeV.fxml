@@ -21,8 +21,8 @@
     <GridPane hgap="20" vgap="10">
         <Label text="Marke/Type:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
         <TextField fx:id="tfMarkeType" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-        <Label text="Farbe:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-        <TextField fx:id="tfFarbe" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label text="Text:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="tfText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
         <columnConstraints>
             <ColumnConstraints prefWidth="70.0" />
             <ColumnConstraints hgrow="ALWAYS" />

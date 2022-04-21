@@ -2,18 +2,13 @@ package model;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import serial.Catalog;
+import serial.Database;
 
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
-
-public class Bike implements Externalizable
+public class Bike
 {
 	private StringProperty rahmennr = new SimpleStringProperty();
 	private StringProperty markeType = new SimpleStringProperty();
-	private StringProperty farbe = new SimpleStringProperty();
+	private StringProperty text = new SimpleStringProperty();
 
 	public Bike(String rahmennr)
 	{
@@ -29,12 +24,12 @@ public class Bike implements Externalizable
 	{
 		setRahmennr(bike.getRahmennr());
 		setMarkeType(bike.getMarkeType());
-		setFarbe(bike.getFarbe());
+		setText(bike.getText());
 	}
 
 	public static Bike select(String rahmennr)
 	{
-		Bike bike = Catalog.getInstance().selectBikeByRahmennr(rahmennr);
+		Bike bike = Database.getInstance().selectBikeByRahmennr(rahmennr);
 
 		if (bike != null)
 		{
@@ -81,19 +76,19 @@ public class Bike implements Externalizable
 		this.markeType.set(markeType);
 	}
 
-	public String getFarbe()
+	public String getText()
 	{
-		return farbe.get();
+		return text.get();
 	}
 
-	public StringProperty farbeProperty()
+	public StringProperty textProperty()
 	{
-		return farbe;
+		return text;
 	}
 
-	public void setFarbe(String farbe)
+	public void setText(String text)
 	{
-		this.farbe.set(farbe);
+		this.text.set(text);
 	}
 
 
@@ -117,26 +112,16 @@ public class Bike implements Externalizable
 			throw new BikeExecption("Marke und Type muss zumindest 3 Stellen haben!");
 		}
 
-		if (farbe.get() == null)
+		if (text.get() == null)
 		{
-			farbe.set("");
+			text.set("");
 		}
 	}
 
 	public void save() throws BikeExecption
 	{
 		fillAndKill();
-		Catalog.getInstance().save(this);
-	}
-
-	@Override
-	public String toString()
-	{
-		return "Bike{" +
-				"rahmennr='" + rahmennr + '\'' +
-				", markeType='" + markeType + '\'' +
-				", farbe='" + farbe + '\'' +
-				'}';
+		Database.getInstance().save(this);
 	}
 
 	@Override
@@ -154,21 +139,5 @@ public class Bike implements Externalizable
 		Bike bike = (Bike) o;
 
 		return getRahmennr().equals(bike.getRahmennr());
-	}
-
-	@Override
-	public void writeExternal(ObjectOutput out) throws IOException
-	{
-		out.writeObject(getRahmennr());
-		out.writeObject(getMarkeType());
-		out.writeObject(getFarbe());
-	}
-
-	@Override
-	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException
-	{
-		setRahmennr((String) in.readObject());
-		setMarkeType((String) in.readObject());
-		setFarbe((String) in.readObject());
 	}
 }

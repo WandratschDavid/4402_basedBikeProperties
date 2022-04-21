@@ -3,14 +3,16 @@ package main;
 import controllerview.BikeC;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import serial.Catalog;
+import serial.Database;
+
+import java.sql.SQLException;
 
 public class TheMain extends Application
 {
 	@Override
-	public void init()
+	public void init() throws SQLException
 	{
-		Catalog.getInstance().restore();
+		Database.getInstance().getConnection();
 	}
 
 	@Override
@@ -20,8 +22,8 @@ public class TheMain extends Application
 	}
 
 	@Override
-	public void stop()
+	public void stop() throws SQLException
 	{
-		Catalog.getInstance().persist();
+		Database.getInstance().close();
 	}
 }

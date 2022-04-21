@@ -23,7 +23,7 @@ public class BikeC
 	private TextField tfMarkeType;
 
 	@FXML
-	private TextField tfFarbe;
+	private TextField tfText;
 
 	@FXML
 	private Button btCancel;
@@ -93,12 +93,12 @@ public class BikeC
 		{
 			tfRahmennr.textProperty().unbindBidirectional(model.rahmennrProperty());
 			tfMarkeType.textProperty().unbindBidirectional(model.markeTypeProperty());
-			tfFarbe.textProperty().unbindBidirectional(model.farbeProperty());
+			tfText.textProperty().unbindBidirectional(model.textProperty());
 		}
 
 		tfRahmennr.setText("");
 		tfMarkeType.setText("");
-		tfFarbe.setText("");
+		tfText.setText("");
 
 		disableNonkey(true);
 	}
@@ -110,7 +110,7 @@ public class BikeC
 
 		tfRahmennr.textProperty().bindBidirectional(model.rahmennrProperty());
 		tfMarkeType.textProperty().bindBidirectional(model.markeTypeProperty());
-		tfFarbe.textProperty().bindBidirectional(model.farbeProperty());
+		tfText.textProperty().bindBidirectional(model.textProperty());
 
 		disableNonkey(false);
 	}
@@ -135,7 +135,7 @@ public class BikeC
 	{
 		// Disable Fields
 		tfMarkeType.setDisable(disable);
-		tfFarbe.setDisable(disable);
+		tfText.setDisable(disable);
 
 		// Dis/Enable Buttons
 		btSelect.setDisable(!disable);
